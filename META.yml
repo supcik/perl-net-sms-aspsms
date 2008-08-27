@@ -1,0 +1,30 @@
+---
+name: Net-SMS-ASPSMS
+version: 0.1.0
+author:
+  - 'Jacques Supciky <supcik@cpan.org>'
+abstract: Interface to ASMSMS services
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  Carp: 0
+  Data::Dumper: 0
+  LWP::UserAgent: 0
+  List::Util: 0
+  Test::More: 0
+  Unicode::String: 0
+  XML::DOM: 0
+  overload: 0
+  version: 0
+provides:
+  Net::SMS::ASPSMS:
+    file: lib/Net/SMS/ASPSMS.pm
+    version: 0.1.0
+  Net::SMS::ASPSMS::XML:
+    file: lib/Net/SMS/ASPSMS/XML.pm
+    version: 1.0.0
+generated_by: Module::Build version 0.2808
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
