@@ -1,6 +1,6 @@
 ---
 name: Net-SMS-ASPSMS
-version: 0.1.0
+version: 0.1.1
 author:
   - 'Jacques Supciky <supcik@cpan.org>'
 abstract: Interface to ASMSMS services
@@ -10,6 +10,7 @@ resources:
 requires:
   Carp: 0
   Data::Dumper: 0
+  Getopt::Long: 0
   LWP::UserAgent: 0
   List::Util: 0
   Test::More: 0
