@@ -1,39 +1,46 @@
 #!/usr/bin/env perl
 
 #----------------------------------------------------------------------------
-# aspsms version 0.1.1
+# aspsms version 0.1.3
 #----------------------------------------------------------------------------
 # Copyright (c) 2009 Jacques Supcik
 #----------------------------------------------------------------------------
-
-use version; $VERSION = qv('0.1.1');
 
 use strict;
 use warnings;
 use Carp;
 use Getopt::Long;
 use Net::SMS::ASPSMS;
+use Pod::Usage;
 
+our $VERSION = '0.1.3';
 my %opt = ();
 
 foreach (qw(userkey password originator)) {
-    $opt{$_} = $ENV{'ASPSMS_' . uc($_)} if defined $ENV{
-        'ASPSMS_' . uc($_)
-        };
+    $opt{$_} = $ENV{'ASPSMS_' . uc($_)} if defined $ENV{'ASPSMS_' . uc($_)};
 }
 
 GetOptions(
-    \%opt, qw(
-        operation=s
-        userkey=s
-        password=s
-        originator=s
-        recipient-phone-number=s
-        )
-);
+    \%opt,
+    qw(version help man operation=s userkey=s password=s originator=s
+        recipient-phone-number=s)
+) or pod2usage(2);
+
+pod2usage(-verbose => 1) if ($opt{help});
+pod2usage(-verbose => 2) if ($opt{man});
+
+if ($opt{version}) {
+    print <<EOT;
+aspsms $VERSION
+
+Copyright (c) 2009, Jacques Supcik <supcik\@cpan.org>
+All rights reserved.
+EOT
+    exit;
+}
 
 if (not defined $opt{operation}) {
-    if ($0 =~ /.*-(.*?)(?:\.pl)?$/) {
+    if ($0 =~ /^aspsms-(.*?)(?:\.pl)?$/) {
         $opt{operation} = $1;
     } elsif (defined $ARGV[0]) {
         $opt{operation} = shift @ARGV;
@@ -41,6 +48,7 @@ if (not defined $opt{operation}) {
         $opt{operation} = 'send_text_sms';
     }
 }
+$opt{operation} =~ s/-/_/g;
 
 my $sms = new Net::SMS::ASPSMS(
     userkey  => $opt{userkey},
@@ -55,7 +63,7 @@ sub show_credits {
 sub send_text_sms {
     my $message_data;
     {
-        local $/; # enable localized slurp mode
+        local $/;    # enable localized slurp mode
         $message_data = <STDIN>;
     }
 
@@ -80,7 +88,7 @@ __END__
 
 =head1 NAME
 
-aspsms - A simple script to ASMSMS services (using Net::SMS::ASPSMS)
+aspsms - A simple script to ASPSMS services (using Net::SMS::ASPSMS)
 
 =head1 VERSION
 
@@ -88,6 +96,7 @@ This document describes aspsms version 0.1.1
 
 =head1 SYNOPSIS
 
+  smsasp [option] ...
 
   echo "Hello" | smsasp --userkey=MyUserKey --password=SecReT \
                         --originator=Me     --recipient=+5150123456
@@ -100,6 +109,54 @@ This document describes aspsms version 0.1.1
 
   smsasp show_credits
 
+=head1 OPTIONS
+
+=over 4
+
+=item B<--help>
+
+Print a help message describing all of aspsms’s command-line options.
+
+=item B<--man>
+
+Prints the manual page of aspsms
+
+=item B<--version>
+
+Display the version of aspsms.
+
+=item B<--operation=OP>
+
+The operation to be done. Currently, only B<show-credits> and
+B<send-text-sms> are implemented. The option can also be taken from the
+file name (just make a symbolic link named C<aspsms-op> to the script
+(e.g. aspsms-send-text-sms). You can also give the operation as the
+first non-option argument (e.g. C<aspsms send-text-sms>)
+
+If no operation is specified, C<send-text-sms> is used by default.
+
+=item B<--userkey=USER_KEY>
+
+The userkey can also be specified using the C<ASPSMS_USERKEY> environment
+variable. No default is offered.
+
+=item B<--password=PASSWORD>
+
+The password can also be specified using the C<ASPSMS_PASSWORD> environment
+variable. No default is offered
+
+=item B<--originator=ORIGINATOR>
+
+The originator can also be specified using the C<ASPSMS_ORIGINATOR> environment
+variable. No default is offered.
+
+=item B<--recipient-phone-number=PHONE_NUMBER>
+
+Note, you can also shorten this option as long as it is uniquely
+identified (e.g --recipient=...). No default is offered.
+
+=back
+
 =head1 DESCRIPTION
 
 There are no known bugs in this script. 
@@ -109,7 +166,7 @@ Patches are welcome.
 
 =head1 AUTHOR
 
-Jacques Supcik  C<< <supcik@cpan.org> >>
+Jacques Supcik C<< <supcik@cpan.org> >>
 
 =head1 LICENCE AND COPYRIGHT
 

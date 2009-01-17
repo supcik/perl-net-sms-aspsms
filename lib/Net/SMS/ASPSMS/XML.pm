@@ -1,12 +1,12 @@
 package Net::SMS::ASPSMS::XML;
 
-use version; $VERSION = qv('1.0.0');
-
 use warnings;
 use strict;
 use Carp;
 use Unicode::String qw(utf8);
 use overload q("") => \&as_string;
+
+our $VERSION = '1.0.1';
 
 my @valid_tags = qw(
   Userkey AffiliateId Password Originator UsedCredits
@@ -88,7 +88,7 @@ Net::SMS::ASPSMS::XML - XML generator for Net::SMS::ASMSMS
 
 =head1 VERSION
 
-This document describes Net::SMS::ASPSMS::XML version 1.0.0
+This document describes Net::SMS::ASPSMS::XML version 1.0.1
 
 
 =head1 SYNOPSIS

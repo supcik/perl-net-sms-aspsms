@@ -1,7 +1,5 @@
 package Net::SMS::ASPSMS;
 
-use version; $VERSION = qv('0.1.0');
-
 use warnings;
 use strict;
 use Carp;
@@ -9,6 +7,8 @@ use Carp;
 use LWP::UserAgent;
 use Net::SMS::ASPSMS::XML;
 use XML::DOM;
+
+our $VERSION = '0.1.3';
 
 use List::Util qw(shuffle);
 
@@ -112,7 +112,7 @@ Net::SMS::ASPSMS - Interface to ASMSMS services
 
 =head1 VERSION
 
-This document describes Net::SMS::ASPSMS version 0.1.0
+This document describes Net::SMS::ASPSMS version 0.1.3
 
 
 =head1 SYNOPSIS
@@ -153,7 +153,7 @@ Jacques Supcik  C<< <supcik@cpan.org> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2008, Jacques Supcik C<< <supcik@cpan.org> >>.
+Copyright (c) 2009, Jacques Supcik C<< <supcik@cpan.org> >>.
 All rights reserved.
 
 This module is free software; you can redistribute it and/or
