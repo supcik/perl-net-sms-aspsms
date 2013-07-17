@@ -97,18 +97,18 @@ This document describes aspsms version 0.1.1
 
 =head1 SYNOPSIS
 
-  smsasp [option] ...
+  aspsms [option] ...
 
-  echo "Hello" | smsasp --userkey=MyUserKey --password=SecReT \
+  echo "Hello" | aspsms --userkey=MyUserKey --password=SecReT \
                         --originator=Me     --recipient=+5150123456
 
   export ASPSMS_USERKEY="MyUserKey"
   export ASPSMS_PASSWORD="SecReT"
-  echo "Hello" | smsasp --originator=Me --recipient=+5150123456
+  echo "Hello" | aspsms --originator=Me --recipient=+5150123456
 
-  smsasp --operation=show_credits
+  aspsms --operation=show_credits
 
-  smsasp show_credits
+  aspsms show_credits
 
 =head1 OPTIONS
 

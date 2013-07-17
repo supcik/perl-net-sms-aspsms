@@ -83,7 +83,7 @@ __END__
 
 =head1 NAME
 
-Net::SMS::ASPSMS::XML - XML generator for Net::SMS::ASMSMS
+Net::SMS::ASPSMS::XML - XML generator for Net::SMS::ASPSMS
 
 
 =head1 VERSION

@@ -107,7 +107,7 @@ __END__
 
 =head1 NAME
 
-Net::SMS::ASPSMS - Interface to ASMSMS services
+Net::SMS::ASPSMS - Interface to ASPSMS services
 
 
 =head1 VERSION

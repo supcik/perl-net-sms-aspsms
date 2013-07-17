@@ -1,9 +1,9 @@
 ---
 name: Net-SMS-ASPSMS
-version: 0.1.4
+version: 0.1.5
 author:
   - 'Jacques Supciky <supcik@cpan.org>'
-abstract: Interface to ASMSMS services
+abstract: Interface to ASPSMS services
 license: perl
 resources:
   license: http://dev.perl.org/licenses/
@@ -25,7 +25,7 @@ provides:
   Net::SMS::ASPSMS::XML:
     file: lib/Net/SMS/ASPSMS/XML.pm
     version: 1.0.1
-generated_by: Module::Build version 0.2808
+generated_by: Module::Build version 0.280801
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2
