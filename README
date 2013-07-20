@@ -1,4 +1,4 @@
-Net::SMS::ASMSPS 0.1.1
+Net::SMS::ASMSPS 0.1.6
 
 A Perl interface to ASPSMS
 
@@ -30,7 +30,7 @@ None.
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2009, Jacques Supcik
+Copyright (C) 2013, Jacques Supcik
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

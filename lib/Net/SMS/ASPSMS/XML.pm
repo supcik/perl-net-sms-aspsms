@@ -3,10 +3,10 @@ package Net::SMS::ASPSMS::XML;
 use warnings;
 use strict;
 use Carp;
-use Unicode::String qw(utf8);
+#use Unicode::String qw(utf8);
 use overload q("") => \&as_string;
 
-our $VERSION = '1.0.1';
+our $VERSION = '1.0.2';
 
 my @valid_tags = qw(
   Userkey AffiliateId Password Originator UsedCredits
@@ -44,8 +44,10 @@ sub initialize {
 
 sub as_string {
     my $self = shift;
+    my $encoding = shift;
+    $encoding = "ISO-8859-1" if not defined $encoding;
     my $container = '';
-    my $result = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+    my $result = "<?xml version=\"1.0\" encoding=\"${encoding}\"?>\n";
     $result .= "<aspsms>\n";
     foreach (@valid_tags) {
         if (exists $self->{data}->{lc($_)}) {
@@ -56,7 +58,7 @@ sub as_string {
                 $result .= "  <$c>\n" if $c;
                 $container = $c;
             }
-            $content = utf8($content)->latin1;
+            #$content = utf8($content)->latin1;
             $content =~ s/([\x26\x3c\x3e\x80-\xff])/'&#' . ord($1) . ';'/xeg;
             $result .= "  " if $container;
             $result .= "  <$tag>" . $content . "</$tag>\n";
@@ -88,7 +90,7 @@ Net::SMS::ASPSMS::XML - XML generator for Net::SMS::ASPSMS
 
 =head1 VERSION
 
-This document describes Net::SMS::ASPSMS::XML version 1.0.1
+This document describes Net::SMS::ASPSMS::XML version 1.0.2
 
 
 =head1 SYNOPSIS
@@ -127,7 +129,7 @@ Jacques Supcik  C<< <supcik@cpan.org> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2008, Jacques Supcik C<< <supcik@cpan.org> >>.
+Copyright (c) 2013, Jacques Supcik C<< <supcik@cpan.org> >>.
 All rights reserved.
 
 This module is free software; you can redistribute it and/or

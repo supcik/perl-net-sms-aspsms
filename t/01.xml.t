@@ -1,4 +1,5 @@
 use Test::More tests => 4;
+use utf8;
 
 BEGIN {
     use_ok( 'Net::SMS::ASPSMS::XML' );

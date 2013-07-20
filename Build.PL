@@ -7,9 +7,10 @@ my $builder = Module::Build->new(
     license            => 'perl',
     create_makefile_pl => 'passthrough',
     dist_author        => 'Jacques Supciky <supcik@cpan.org>',
-    dist_version       => '0.1.5',
+    dist_version       => '0.1.6',
     script_files       => qw( script/aspsms ),
     requires           => {
+        'perl'            => '5.8.7',
         'Carp'            => 0,
         'Data::Dumper'    => 0,
         'Getopt::Long'    => 0,
@@ -18,7 +19,7 @@ my $builder = Module::Build->new(
         'overload'        => 0,
         'Pod::Usage'      => 0,
         'Test::More'      => 0,
-        'Unicode::String' => 0,
+        'Encode'          => 0,
         'XML::DOM'        => 0,
     },
 );

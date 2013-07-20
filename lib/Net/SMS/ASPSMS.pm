@@ -7,8 +7,9 @@ use Carp;
 use LWP::UserAgent;
 use Net::SMS::ASPSMS::XML;
 use XML::DOM;
+use Encode qw(decode encode);
 
-our $VERSION = '0.1.3';
+our $VERSION = '0.1.6';
 
 use List::Util qw(shuffle);
 
@@ -47,7 +48,7 @@ sub _send {
     my $ua = LWP::UserAgent->new (timeout => 10);
     foreach my $url (@urls) {
         my $req = HTTP::Request->new(POST => "http://$url/xmlsvr.asp");
-        $req->content($message);
+        $req->content(encode("iso-8859-1", $message));
         my $res = $ua->request($req);
         if ($res->is_success) {
             $self->{status_line} = $res->status_line;
@@ -112,7 +113,7 @@ Net::SMS::ASPSMS - Interface to ASPSMS services
 
 =head1 VERSION
 
-This document describes Net::SMS::ASPSMS version 0.1.3
+This document describes Net::SMS::ASPSMS version 0.1.6
 
 
 =head1 SYNOPSIS
@@ -153,7 +154,7 @@ Jacques Supcik  C<< <supcik@cpan.org> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2009, Jacques Supcik C<< <supcik@cpan.org> >>.
+Copyright (c) 2013, Jacques Supcik C<< <supcik@cpan.org> >>.
 All rights reserved.
 
 This module is free software; you can redistribute it and/or
